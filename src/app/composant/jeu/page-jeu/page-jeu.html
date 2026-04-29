@@ -1,0 +1,139 @@
+@if (puzzle) {
+  <section class="page-jeu">
+    <header class="entete-page">
+      <h1 class="titre-page">Puzzle mathématique</h1>
+<!--      <p class="consigne">-->
+<!--        Choisis un niveau, puis complète la case manquante pour résoudre le calcul.-->
+<!--      </p>-->
+    </header>
+
+    <section class="zone-regles" aria-labelledby="titre-regles">
+      <div class="zone-regles-entete">
+        <h3 id="titre-regles">Règles du jeu</h3>
+      </div>
+
+      <div class="contenu-regles">
+        <p>
+          Complète les cases manquantes pour que l’égalité soit correcte.
+        </p>
+
+        <ul class="liste-regles">
+          <li>Les nombres négatifs sont autorisés.</li>
+          <li>Dans certains puzzles, une valeur négative est même nécessaire pour trouver la bonne réponse.</li>
+          <li>Les divisions sont autorisées.</li>
+          <li>Une division doit toujours donner un résultat entier.</li>
+          <li>Les priorités opératoires s’appliquent : multiplications et divisions avant additions et soustractions.</li>
+          <li>La difficulté augmente automatiquement après plusieurs bonnes réponses.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="zone-niveaux" aria-labelledby="titre-niveaux">
+      <div class="zone-niveaux-entete">
+        <h3 id="titre-niveaux">Niveaux de difficulté</h3>
+        <p>Sélectionne un niveau avant de jouer.</p>
+      </div>
+
+      <div class="grille-niveaux">
+        @for (niveau of niveaux; track niveau.cle) {
+          <button
+            type="button"
+            class="carte-niveau"
+            [class.carte-niveau-active]="niveau.cle === difficulteSelectionnee"
+            (click)="choisirDifficulte(niveau.cle)"
+          >
+            <span class="carte-niveau-titre">{{ niveau.titre }}</span>
+            <span class="carte-niveau-description">{{ niveau.description }}</span>
+          </button>
+        }
+      </div>
+    </section>
+
+    <section class="zone-progression" aria-labelledby="titre-progression">
+      <div class="zone-progression-entete">
+        <h3 id="titre-progression">Progression</h3>
+        <p>
+          Niveau actuel :
+          <strong>{{ libelleNiveau(difficulteSelectionnee) }}</strong>
+        </p>
+        <p>
+          Réussites :
+          <strong>{{ bonnesReponsesNiveau }}/{{ objectifBonnesReponses }}</strong>
+        </p>
+      </div>
+
+      <div class="barre-progression" aria-hidden="true">
+        <div
+          class="barre-progression-remplissage"
+          [style.width.%]="progressionPourcentage()"
+        ></div>
+      </div>
+    </section>
+
+    <section class="zone-jeu" aria-labelledby="titre-zone-jeu">
+      <div class="zone-jeu-entete">
+        <h3 id="titre-zone-jeu">Jeu</h3>
+        <p class="numero-puzzle">
+          Puzzle n° <strong>{{ numeroPuzzle }}</strong>
+        </p>
+      </div>
+
+      <div class="ligne-puzzle">
+        @for (token of puzzle.tokens; track token.id) {
+          <div class="segment">
+            @if (!token.modifiable) {
+              <span class="valeur-fixe">{{ token.valeur }}</span>
+            } @else if (token.type === 'trou-nombre') {
+              <input
+                type="text"
+                [ngModel]="token.valeur"
+                (ngModelChange)="mettreAJourTrouNombre(token, $event)"
+                (keydown)="bloquerTouchesInvalides($event)"
+                class="champ-reponse"
+                inputmode="numeric"
+                aria-label="Réponse numérique"
+              />
+            } @else if (token.type === 'trou-operateur') {
+              <select
+                [ngModel]="token.valeur"
+                (ngModelChange)="token.valeur = $event"
+                class="champ-operateur"
+                aria-label="Réponse opérateur"
+              >
+                <option value="">?</option>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+              </select>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="actions">
+        <button type="button" class="bouton bouton-principal" (click)="verifier()">
+          Vérifier
+        </button>
+
+        <button type="button" class="bouton bouton-secondaire" (click)="chargerPuzzle()">
+          Nouveau jeu
+        </button>
+      </div>
+
+
+      @if (message) {
+        <div
+          class="message-retour"
+          [class.message-retour-succes]="typeMessage === 'succes'"
+          [class.message-retour-erreur]="typeMessage === 'erreur'"
+          [class.message-retour-info]="typeMessage === 'info'"
+          role="status"
+          aria-live="polite"
+        >
+          {{ message }}
+        </div>
+      }
+    </section>
+  </section>
+}
