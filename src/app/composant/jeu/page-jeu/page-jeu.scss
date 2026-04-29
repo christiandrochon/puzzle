@@ -1,0 +1,325 @@
+:host {
+  display: block;
+}
+
+.page-jeu {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.entete-page {
+  text-align: center;
+}
+
+.titre-page {
+  margin: 0 0 0.5rem;
+  font-size: 1.9rem;
+  color: #1f2937;
+}
+
+.consigne {
+  margin: 0;
+  color: #4b5563;
+}
+
+.zone-niveaux {
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+}
+
+.zone-niveaux-entete {
+  margin-bottom: 1rem;
+}
+
+.zone-niveaux-entete h3 {
+  margin: 0 0 0.25rem;
+  color: #312e81;
+}
+
+.zone-niveaux-entete p {
+  margin: 0;
+  color: #4338ca;
+}
+
+.grille-niveaux {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.carte-niveau {
+  text-align: left;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 1rem;
+  cursor: pointer;
+  background: #ffffff;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.carte-niveau:hover {
+  transform: translateY(-1px);
+  border-color: #818cf8;
+  box-shadow: 0 8px 18px rgba(99, 102, 241, 0.12);
+}
+
+.carte-niveau-active {
+  border-color: #4f46e5;
+  background: #e0e7ff;
+}
+
+.carte-niveau-titre {
+  display: block;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.35rem;
+}
+
+.carte-niveau-description {
+  display: block;
+  font-size: 0.92rem;
+  color: #4b5563;
+}
+
+.zone-progression {
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+}
+
+.zone-progression-entete h3 {
+  margin: 0 0 0.25rem;
+  color: #5b21b6;
+}
+
+.zone-progression-entete p {
+  margin: 0.2rem 0;
+  color: #4b5563;
+}
+
+.barre-progression {
+  margin-top: 0.9rem;
+  height: 14px;
+  border-radius: 999px;
+  background: #e9e5ff;
+  overflow: hidden;
+}
+
+.barre-progression-remplissage {
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  transition: width 0.2s ease;
+}
+
+.zone-jeu {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.zone-jeu-entete {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.zone-jeu-entete h3 {
+  margin: 0 0 0.25rem;
+  color: #111827;
+}
+
+.numero-puzzle {
+  margin-top: 0.35rem;
+  color: #6b7280;
+}
+
+.ligne-puzzle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.segment {
+  min-width: 72px;
+  min-height: 72px;
+  padding: 0.75rem;
+  border-radius: 999px;
+  border: 2px solid #374151;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.valeur-fixe {
+  display: inline-block;
+  color: #111827;
+}
+
+.champ-reponse {
+  width: 56px;
+  height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  outline: none;
+}
+
+.champ-reponse:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.champ-operateur {
+  width: 56px;
+  height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  outline: none;
+  cursor: pointer;
+}
+
+.champ-operateur:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.champ-reponse {
+  width: 52px;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  outline: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.bouton {
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1.15rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.bouton:hover {
+  transform: translateY(-1px);
+}
+
+.bouton-principal {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.bouton-secondaire {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.message-retour {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.message-retour-succes {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.message-retour-erreur {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.message-retour-info {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #93c5fd;
+}
+
+@media (max-width: 900px) {
+  .grille-niveaux {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .grille-niveaux {
+    grid-template-columns: 1fr;
+  }
+}
+
+.numero-puzzle {
+  margin-top: 0.35rem;
+  color: #6b7280;
+}
+
+.champ-operateur {
+  width: 52px;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  outline: none;
+}
+
+.zone-regles {
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: #ecfeff;
+  border: 1px solid #a5f3fc;
+}
+
+.zone-regles-entete h3 {
+  margin: 0 0 0.75rem;
+  color: #155e75;
+}
+
+.contenu-regles p {
+  margin: 0 0 0.75rem;
+  color: #164e63;
+}
+
+.liste-regles {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #164e63;
+}
+
+.liste-regles li {
+  margin-bottom: 0.45rem;
+}
